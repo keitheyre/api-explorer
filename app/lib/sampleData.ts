@@ -225,6 +225,18 @@ export const sampleEndpoints: Endpoint[] = [
     description: 'Test DELETE request',
     group: 'HTTPBin',
   },
+  {
+    method: 'GET',
+    url: 'https://httpbin.org/html',
+    description: 'Test HTML response',
+    group: 'HTTPBin',
+  },
+  {
+    method: 'GET',
+    url: 'https://httpbin.org/status/404',
+    description: 'Test 404 error (HTML response)',
+    group: 'HTTPBin',
+  },
 ];
 
 export const sampleSwagger = {
@@ -341,6 +353,18 @@ export const sampleSwagger = {
     '/delete': {
       delete: {
         summary: 'Test DELETE request',
+        tags: ['HTTPBin'],
+      },
+    },
+    '/html': {
+      get: {
+        summary: 'Test HTML response',
+        tags: ['HTTPBin'],
+      },
+    },
+    '/status/404': {
+      get: {
+        summary: 'Test 404 error (HTML response)',
         tags: ['HTTPBin'],
       },
     },

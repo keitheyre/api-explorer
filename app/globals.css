@@ -1,8 +1,19 @@
 @import "tailwindcss";
 
-:root {
+.light {
   --background: #f8fafc;
-  --foreground: #171717;
+  --foreground: #000000;
+  --muted-foreground: #000000;
+  --color-primary: #63b5f2;
+  --color-accent: #ff9800;
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-geist-mono);
+}
+
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --muted-foreground: #94a3b8;
   --color-primary: #63b5f2;
   --color-accent: #ff9800;
   --font-sans: var(--font-inter);
@@ -12,26 +23,16 @@
 @theme inline {
   --color-primary: #63b5f2;
   --color-accent: #ff9800;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: 'Inter', sans-serif;
+  --color-foreground: var(--foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-background: var(--background);
 }
 
 /* Glass morphism utilities */
 .glass {
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.9); /* More opaque for better contrast */
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.15); /* Darker border for better definition */
 }
 
 .dark .glass {

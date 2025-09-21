@@ -1,17 +1,23 @@
 'use client';
 
 import { motion } from 'framer-motion';
+
 import { useTheme } from './ThemeProvider';
 
 export function BackgroundBlobs() {
+
   const { theme } = useTheme();
 
   const blobClass = theme === 'light' 
-    ? 'bg-gradient-to-br from-primary/10 to-accent/10' 
+
+    ? 'bg-gradient-to-br from-primary/30 to-accent/30' 
+
     : 'bg-primary/20';
 
   const blobClass2 = theme === 'light' 
-    ? 'bg-gradient-to-br from-accent/10 to-primary/10' 
+
+    ? 'bg-gradient-to-br from-accent/30 to-primary/30' 
+
     : 'bg-accent/20';
 
   return (

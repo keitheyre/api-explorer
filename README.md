@@ -18,6 +18,7 @@ A beautiful, modern API testing tool built with Next.js, TypeScript, and Tailwin
 - **Parameter Handling**: Path parameters, query parameters, and request bodies
 - **Real-time Validation**: JSON validation for POST/PUT request bodies
 - **Response Display**: Formatted JSON responses with status codes and timing
+- **Content Type Support**: Renders HTML responses in iframes and pretty-prints JSON
 - **Error Handling**: Comprehensive error display with network error support
 
 ### 📊 Sample APIs
@@ -25,6 +26,7 @@ A beautiful, modern API testing tool built with Next.js, TypeScript, and Tailwin
 - **Grouped Organization**: Endpoints organized by categories (Users, Posts, HTTPBin)
 - **Expandable Sections**: Collapsible endpoint groups for better organization
 - **Parameter Examples**: Pre-filled examples for easy testing
+- **Custom Import**: Import your own OpenAPI/Swagger specifications (JSON/YAML)
 
 ### 🎯 User Experience
 - **Compact Interface**: Expandable endpoint cards to save screen space
@@ -82,7 +84,19 @@ A beautiful, modern API testing tool built with Next.js, TypeScript, and Tailwin
    - **Query Parameters**: Add key-value pairs to the URL
    - **Request Body**: Enter JSON for POST/PUT requests with real-time validation
 3. **Execute Request**: Click the "Execute" button to send the API request
-4. **View Results**: Response appears below with status, timing, and formatted data
+4. **View Results**: Response appears below with status, timing, and formatted data:
+   - **JSON responses** are pretty-printed with syntax highlighting
+   - **HTML responses** are rendered in a secure iframe
+   - **Text responses** are displayed with proper formatting
+
+### Importing Custom APIs
+
+1. **Click "Import Swagger"**: Opens the import dialog
+2. **Choose Input Method**:
+   - **Upload File**: Drag & drop or browse for JSON/YAML OpenAPI files
+   - **Paste Text**: Directly paste your specification content
+3. **Import**: Click "Import" to parse and load your API endpoints
+4. **Test**: Your custom endpoints are now ready for testing
 
 ### Theme Switching
 

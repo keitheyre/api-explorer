@@ -5,6 +5,7 @@ import { Play, Loader2, ChevronDown, ChevronUp, CheckCircle, XCircle } from 'luc
 import { useState } from 'react';
 import { Endpoint, Parameter } from '../lib/sampleData';
 import { ApiResultDisplay } from './ApiResultDisplay';
+import { useTheme } from './ThemeProvider';
 
 interface ApiEndpointProps {
   endpoint: Endpoint;
@@ -25,6 +26,7 @@ export function ApiEndpoint({ endpoint }: ApiEndpointProps) {
   const [paramValues, setParamValues] = useState<Record<string, any>>({});
   const [paramStrings, setParamStrings] = useState<Record<string, string>>({});
   const [result, setResult] = useState<ApiResult | null>(null);
+  const { theme } = useTheme();
 
   const handleParamChange = (param: Parameter, value: any) => {
     setParamValues(prev => ({ ...prev, [param.name]: value }));
@@ -131,11 +133,11 @@ export function ApiEndpoint({ endpoint }: ApiEndpointProps) {
 
   const getMethodColor = (method: string) => {
     switch (method.toUpperCase()) {
-      case 'GET': return 'text-green-400';
-      case 'POST': return 'text-blue-400';
-      case 'PUT': return 'text-yellow-400';
-      case 'DELETE': return 'text-red-400';
-      default: return 'text-gray-400';
+      case 'GET': return 'text-green-600 bg-green-100 dark:text-green-400 dark:bg-green-400/10';
+      case 'POST': return 'text-blue-600 bg-blue-100 dark:text-blue-400 dark:bg-blue-400/10';
+      case 'PUT': return 'text-yellow-600 bg-yellow-100 dark:text-yellow-400 dark:bg-yellow-400/10';
+      case 'DELETE': return 'text-red-600 bg-red-100 dark:text-red-400 dark:bg-red-400/10';
+      default: return 'text-gray-600 bg-gray-100 dark:text-gray-400 dark:bg-gray-400/10';
     }
   };
 
@@ -155,10 +157,10 @@ export function ApiEndpoint({ endpoint }: ApiEndpointProps) {
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3 flex-1 min-w-0">
-            <span className={`font-mono font-bold text-sm px-2 py-1 rounded ${getMethodColor(endpoint.method)} bg-current/10 flex-shrink-0`}>
+            <span className={`font-mono font-bold text-sm px-2 py-1 rounded ${getMethodColor(endpoint.method)} flex-shrink-0`}>
               {endpoint.method}
             </span>
-            <span className="text-foreground font-mono text-sm truncate flex-1">{endpoint.url}</span>
+            <span className={`font-mono text-sm truncate flex-1 text-foreground`}>{endpoint.url}</span>
           </div>
           <div className="flex items-center gap-2 flex-shrink-0">
             {isExpanded ? (
@@ -182,7 +184,7 @@ export function ApiEndpoint({ endpoint }: ApiEndpointProps) {
           >
             <div className="p-4 space-y-4">
               {endpoint.description && (
-                <p className="text-muted-foreground text-sm">{endpoint.description}</p>
+                <p className={`text-foreground text-sm`}>{endpoint.description}</p>
               )}
 
               {hasParameters && (
@@ -192,15 +194,15 @@ export function ApiEndpoint({ endpoint }: ApiEndpointProps) {
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.1 }}
                 >
-                  <h4 className="font-semibold text-sm">Parameters</h4>
+                  <h4 className={`font-semibold text-sm text-foreground`}>Parameters</h4>
                   {endpoint.parameters?.map((param) => (
                     <div key={param.name} className="space-y-2">
-                      <label className="block text-sm font-medium">
+                      <label className={`block text-sm font-medium text-foreground`}>
                         {param.name} {param.required && <span className="text-red-400">*</span>}
-                        <span className="text-muted-foreground ml-2">({param.in})</span>
+                        <span className={`text-foreground ml-2`}>({param.in})</span>
                       </label>
                       {param.description && (
-                        <p className="text-xs text-muted-foreground">{param.description}</p>
+                        <p className={`text-xs text-foreground`}>{param.description}</p>
                       )}
                       {param.in === 'body' ? (
                         <div className="space-y-2">
