@@ -5,7 +5,6 @@ import { Play, Loader2, ChevronDown, ChevronUp, CheckCircle, XCircle } from 'luc
 import { useState } from 'react';
 import { Endpoint, Parameter } from '../lib/sampleData';
 import { ApiResultDisplay } from './ApiResultDisplay';
-import { useTheme } from './ThemeProvider';
 
 interface ApiEndpointProps {
   endpoint: Endpoint;
@@ -14,7 +13,7 @@ interface ApiEndpointProps {
 export interface ApiResult {
   status: number;
   statusText: string;
-  data: any;
+  data: unknown;
   time: number;
   error?: string;
   url: string; // Add the actual URL used
@@ -23,13 +22,20 @@ export interface ApiResult {
 export function ApiEndpoint({ endpoint }: ApiEndpointProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
-  const [paramValues, setParamValues] = useState<Record<string, any>>({});
+  const [paramValues, setParamValues] = useState<Record<string, string | number | boolean>>({});
   const [paramStrings, setParamStrings] = useState<Record<string, string>>({});
   const [result, setResult] = useState<ApiResult | null>(null);
-  const { theme } = useTheme();
 
-  const handleParamChange = (param: Parameter, value: any) => {
-    setParamValues(prev => ({ ...prev, [param.name]: value }));
+  const handleParamChange = (param: Parameter, value: string | number | boolean | undefined) => {
+    if (value !== undefined) {
+      setParamValues(prev => ({ ...prev, [param.name]: value }));
+    } else {
+      setParamValues(prev => {
+        const newValues = { ...prev };
+        delete newValues[param.name];
+        return newValues;
+      });
+    }
   };
 
   const handleParamStringChange = (param: Parameter, stringValue: string) => {
@@ -241,7 +247,7 @@ export function ApiEndpoint({ endpoint }: ApiEndpointProps) {
                           type={param.type === 'integer' ? 'number' : 'text'}
                           className="w-full p-3 bg-background/50 border border-white/20 rounded-lg text-sm"
                           placeholder={param.example?.toString() || `Enter ${param.type}...`}
-                          value={paramValues[param.name] || ''}
+                          value={paramValues[param.name]?.toString() || ''}
                           onChange={(e) => handleParamChange(param, param.type === 'integer' ? parseInt(e.target.value) : e.target.value)}
                         />
                       )}

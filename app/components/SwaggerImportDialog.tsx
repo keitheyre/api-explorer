@@ -33,6 +33,7 @@ export function SwaggerImportDialog({ isOpen, onClose, onImport }: SwaggerImport
 
   const parseSwaggerSpec = async (content: string): Promise<Endpoint[]> => {
     try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       let spec: any;
 
       // Try to parse as JSON first
@@ -43,7 +44,7 @@ export function SwaggerImportDialog({ isOpen, onClose, onImport }: SwaggerImport
         try {
           const YAML = await import('yaml');
           spec = YAML.parse(content);
-        } catch (yamlError) {
+        } catch {
           throw new Error('Please provide a valid JSON or YAML OpenAPI specification');
         }
       }
@@ -55,13 +56,17 @@ export function SwaggerImportDialog({ isOpen, onClose, onImport }: SwaggerImport
       const endpoints: Endpoint[] = [];
 
       if (spec.paths) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         Object.entries(spec.paths).forEach(([path, methods]: [string, any]) => {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           Object.entries(methods).forEach(([method, operation]: [string, any]) => {
             if (typeof operation === 'object' && operation !== null) {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               const parameters: any[] = [];
 
               // Add path parameters
               if (operation.parameters) {
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 operation.parameters.forEach((param: any) => {
                   parameters.push({
                     name: param.name,
@@ -74,7 +79,7 @@ export function SwaggerImportDialog({ isOpen, onClose, onImport }: SwaggerImport
                 });
               }
 
-              // Add requestBody parameters for POST/PUT/PATCH
+              // Add request body parameter
               if (operation.requestBody?.content) {
                 const contentType = operation.requestBody.content['application/json'];
                 if (contentType?.schema) {
@@ -89,15 +94,13 @@ export function SwaggerImportDialog({ isOpen, onClose, onImport }: SwaggerImport
                 }
               }
 
-              const endpoint: Endpoint = {
+              endpoints.push({
                 method: method.toUpperCase(),
                 url: spec.servers?.[0]?.url ? `${spec.servers[0].url}${path}` : `https://api.example.com${path}`,
                 description: operation.summary || operation.description || `${method.toUpperCase()} ${path}`,
                 group: operation.tags?.[0] || 'Imported',
                 parameters: parameters.length > 0 ? parameters : undefined,
-              };
-
-              endpoints.push(endpoint);
+              });
             }
           });
         });

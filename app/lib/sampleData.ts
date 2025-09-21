@@ -12,7 +12,7 @@ export interface Parameter {
   required?: boolean;
   type: string;
   description?: string;
-  example?: any;
+  example?: unknown;
 }
 
 export const sampleEndpoints: Endpoint[] = [

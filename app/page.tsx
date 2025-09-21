@@ -8,13 +8,11 @@ import { ThemeToggle } from './components/ThemeToggle';
 import { ApiEndpoint } from './components/ApiEndpoint';
 import { SwaggerImportDialog } from './components/SwaggerImportDialog';
 import { sampleEndpoints, Endpoint } from './lib/sampleData';
-import { useTheme } from './components/ThemeProvider';
 
 export default function Home() {
   const [endpoints, setEndpoints] = useState<Endpoint[]>([]);
   const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
   const [isImportDialogOpen, setIsImportDialogOpen] = useState(false);
-  const { theme } = useTheme();
 
   const handleLoadSample = () => {
     setEndpoints(sampleEndpoints);
@@ -103,7 +101,7 @@ export default function Home() {
             >
               <Zap className="w-16 h-16 mx-auto mb-4 text-muted-foreground" />
               <p className="text-foreground">
-                Click "Load Sample API" or "Import Swagger" to get started with API endpoints
+                Click &quot;Load Sample API&quot; or &quot;Import Swagger&quot; to get started with API endpoints
               </p>
             </motion.div>
           ) : (

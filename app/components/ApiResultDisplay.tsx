@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion';
 import { CheckCircle, XCircle, Clock, AlertCircle } from 'lucide-react';
 import { ApiResult } from './ApiEndpoint';
-import { useTheme } from './ThemeProvider';
 
 interface ApiResultDisplayProps {
   result: ApiResult | null;
@@ -13,8 +12,6 @@ export function ApiResultDisplay({ result }: ApiResultDisplayProps) {
   if (!result) return null;
 
   const isSuccess = result.status >= 200 && result.status < 300;
-  const isError = result.error || !isSuccess;
-  const { theme } = useTheme();
 
   return (
     <motion.div
