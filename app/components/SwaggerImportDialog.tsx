@@ -175,11 +175,11 @@ export function SwaggerImportDialog({ isOpen, onClose, onImport }: SwaggerImport
             {/* Content */}
             <div className="p-6 space-y-6">
               {/* Tabs */}
-              <div className="flex space-x-1 bg-white/5 rounded-lg p-1">
+              <div className="flex space-x-1 bg-transparent rounded-lg p-1">
                 <button
                   onClick={() => setActiveTab('file')}
                   className={`flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-md transition-colors ${
-                    activeTab === 'file' ? 'bg-white/10 text-foreground' : 'text-muted-foreground hover:text-foreground'
+                    activeTab === 'file' ? 'swagger-tab-active text-foreground' : 'swagger-tab-inactive text-muted-foreground hover:swagger-tab-active hover:text-foreground'
                   }`}
                 >
                   <Upload className="w-4 h-4" />
@@ -188,7 +188,7 @@ export function SwaggerImportDialog({ isOpen, onClose, onImport }: SwaggerImport
                 <button
                   onClick={() => setActiveTab('text')}
                   className={`flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-md transition-colors ${
-                    activeTab === 'text' ? 'bg-white/10 text-foreground' : 'text-muted-foreground hover:text-foreground'
+                    activeTab === 'text' ? 'swagger-tab-active text-foreground' : 'swagger-tab-inactive text-muted-foreground hover:swagger-tab-active hover:text-foreground'
                   }`}
                 >
                   <FileText className="w-4 h-4" />
