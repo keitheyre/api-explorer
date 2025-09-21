@@ -2,7 +2,7 @@
 
 A beautiful, modern API testing tool built with Next.js, TypeScript, and Tailwind CSS. Features glass morphism design, animated backgrounds, and comprehensive API endpoint testing capabilities.
 
-![API Explorer Preview](https://via.placeholder.com/800x400/63b5f2/ffffff?text=API+Explorer+Preview)
+🌐 **Live Demo**: [https://api-explorer.web.app](https://api-explorer.web.app)
 
 ## ✨ Features
 
@@ -46,7 +46,7 @@ A beautiful, modern API testing tool built with Next.js, TypeScript, and Tailwin
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/api-explorer.git
+   git clone https://github.com/keitheyre/api-explorer.git
    cd api-explorer
    ```
 
@@ -270,9 +270,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 If you have questions or need help:
 
-- **Issues**: [GitHub Issues](https://github.com/yourusername/api-explorer/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/yourusername/api-explorer/discussions)
-- **Email**: your.email@example.com
+- **Issues**: [GitHub Issues](https://github.com/keitheyre/api-explorer/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/keitheyre/api-explorer/discussions)
+- **Email**: keith.eyre91@gmail.com
 
 ---
 
